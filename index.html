@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fiche QCM 3 – Les frontières maritimes et aériennes</title>
+
+<style>
+
+/* ===== MISE EN PAGE GÉNÉRALE ===== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f1f4f8;
+    color: #263445;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+}
+
+/* ===== BANDEAU TITRE ===== */
+
+header {
+    background: #24476b;
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin-top: 0;
+}
+
+header h2 {
+    color: white;
+    border: none;
+}
+
+.subtitle {
+    color: #dce9f5;
+}
+
+/* ===== AFFICHAGE DES ÉTAPES ===== */
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+/* ===== TITRES ===== */
+
+h2 {
+    color: #24476b;
+    border-bottom: 2px solid #dce5ee;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #315b7e;
+}
+
+/* ===== QUESTIONS ET CORRECTIONS ===== */
+
+.question {
+    background: #f6f8fb;
+    border: 1px solid #dce4ed;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 18px 0;
+}
+
+.answer {
+    display: block;
+    padding: 9px 12px;
+    margin: 7px 0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.answer:hover {
+    background: #e7eff8;
+}
+
+.correction {
+    background: #f6f8fb;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border-left: 4px solid #52789c;
+}
+
+.result {
+    background: #eaf3ec;
+    border-left: 5px solid #39834c;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+}
+
+/* ===== BOUTONS ===== */
+
+button {
+    background: #24476b;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 20px;
+    margin: 10px 5px 10px 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #38668f;
+}
+
+button:disabled {
+    background: #aab5c0;
+    cursor: not-allowed;
+}
+
+/* ===== NAVIGATION ===== */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 12px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.step-indicator {
+    font-weight: bold;
+    color: #24476b;
+    text-align: center;
+}
+
+/* ===== AUTRES ÉLÉMENTS ===== */
+
+.small {
+    font-size: 0.9em;
+    color: #607080;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdc9d5;
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+.guide {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.guide > div {
+    flex: 1;
+    min-width: 180px;
+    padding: 14px;
+    border-radius: 8px;
+}
+
+
+/* ===== NOUVEAU SCHÉMA MARITIME ===== */
+
+.maritime-diagram {
+    background: #f5f7fa;
+    border: 1px solid #dce4ed;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.diagram-title {
+    text-align: center;
+    color: #24476b;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.maritime-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr 1.5fr 1.3fr;
+    min-width: 570px;
+}
+
+.distance-row {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr 1.5fr 1.3fr;
+    min-width: 570px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.distance-cell {
+    padding: 8px 3px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #24476b;
+}
+
+.distance-cell input {
+    width: 95%;
+    max-width: 145px;
+    padding: 8px 4px;
+    text-align: center;
+    border: 2px solid #52789c;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    background: white;
+}
+
+.distance-cell small {
+    display: block;
+    font-size: 10px;
+    font-weight: normal;
+    color: #607080;
+}
+
+.diagram-zone {
+    min-height: 175px;
+    padding: 12px 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ffffff;
+}
+
+.diagram-zone strong {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.diagram-zone small {
+    font-size: 11px;
+}
+
+.land-zone {
+    background: #e5d8bd;
+    border-radius: 8px 0 0 8px;
+}
+
+.territorial-zone {
+    background: #a8d5eb;
+    border-left: 3px solid #24476b;
+}
+
+.zee-zone {
+    background: #c6e3f0;
+    border-left: 3px dashed #24476b;
+}
+
+.high-seas-zone {
+    background: #dcecf5;
+    border-left: 3px dashed #24476b;
+    border-radius: 0 8px 8px 0;
+}
+
+.zone-input {
+    width: 95%;
+    max-width: 175px;
+    padding: 10px 5px;
+    border: 2px solid #7895aa;
+    border-radius: 6px;
+    background: white;
+    text-align: center;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    color: #263445;
+}
+
+.zone-input:focus,
+.distance-cell input:focus {
+    outline: 2px solid #24476b;
+}
+
+.zone-input::placeholder,
+.distance-cell input::placeholder {
+    color: #8997a4;
+    font-size: 11px;
+}
+
+.diagram-feedback {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 7px;
+    background: #eaf0f5;
+}
+
+.diagram-correction {
+    margin-top: 15px;
+}
+
+.sovereignty-box {
+    padding: 13px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.sovereignty-full {
+    background: #e5eef8;
+    border-left: 5px solid #2471A3;
+}
+
+.sovereignty-limited {
+    background: #e8f5ec;
+    border-left: 5px solid #26945B;
+}
+
+.sovereignty-none {
+    background: #fff1df;
+    border-left: 5px solid #C47B19;
+}
+
+.sovereignty-box strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.diagram-correction-grid .diagram-zone {
+    min-height: 160px;
+}
+
+@media (max-width: 600px) {
+
+    .maritime-diagram {
+        padding: 10px;
+    }
+
+    .maritime-grid,
+    .distance-row {
+        min-width: 570px;
+    }
+
+    .diagram-zone strong {
+        font-size: 12px;
+    }
+
+    .zone-input {
+        font-size: 12px;
+    }
+
+}
+
+/* ===== VERSION MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    header {
+        padding: 18px;
+    }
+
+    .navigation {
+        justify-content: center;
+    }
+
+    .navigation button {
+        flex: 1;
+    }
+
+    .diagram-zones {
+        grid-template-columns: 0.8fr 1fr 1.4fr;
+        min-height: 210px;
+    }
+
+    .diagram-zone {
+        padding: 8px 3px;
+    }
+
+    .diagram-zone strong {
+        font-size: 11px;
+    }
+
+    .diagram-zone small {
+        font-size: 10px;
+    }
+
+    .diagram-select {
+        font-size: 10px;
+        padding: 7px 2px;
+    }
+
+    .diagram-distance {
+        font-size: 10px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>Fiche QCM 3</h1>
+
+    <h2>
+        Les frontières maritimes et aériennes
+    </h2>
+
+    <p class="subtitle">
+        5 questions · 7 minutes
+    </p>
+</header>
+
+<!-- NAVIGATION SUPÉRIEURE -->
+
+<div class="navigation">
+
+    <button id="topPrevious" onclick="previousStep()">
+        ← Précédent
+    </button>
+
+    <span class="step-indicator" id="topIndicator">
+        Étape 1 / 5
+    </span>
+
+    <button id="topNext" onclick="nextStep()">
+        Suivant →
+    </button>
+
+</div>
+
+<!-- ================================== -->
+<!-- ÉTAPE 1 : TEST DES CONNAISSANCES -->
+<!-- ================================== -->
+
+<section class="step active" id="step1">
+
+<h2>Étape 1 – Je teste mes connaissances</h2>
+
+<p>
+Répondez aux quatre premières questions sans consulter votre cours.
+La cinquième question vous propose un schéma interactif à compléter.
+L'objectif est de vérifier votre compréhension des espaces maritimes
+et des droits exercés par les États.
+</p>
+
+<div class="question">
+
+<h3>Question 1</h3>
+
+<p><strong>
+Quel est le principal effet de la Convention de Montego Bay de 1982 ?
+</strong></p>
+
+<label class="answer">
+<input type="radio" name="q1" value="A">
+<strong>A.</strong> Elle transforme toutes les mers en territoires nationaux.
+</label>
+
+<label class="answer">
+<input type="radio" name="q1" value="B">
+<strong>B.</strong> Elle organise le droit de la mer et définit des espaces maritimes auxquels sont associés des droits différents.
+</label>
+
+<label class="answer">
+<input type="radio" name="q1" value="C">
+<strong>C.</strong> Elle supprime les ZEE pour garantir la libre exploitation des ressources.
+</label>
+
+<label class="answer">
+<input type="radio" name="q1" value="D">
+<strong>D.</strong> Elle fixe les frontières aériennes des États.
+</label>
+
+</div>
+
+<div class="question">
+
+<h3>Question 2</h3>
+
+<p><strong>
+Un navire étranger traverse la mer territoriale d'un État côtier
+en respectant les règles du passage inoffensif.
+Quelle proposition est correcte ?
+</strong></p>
+
+<label class="answer">
+<input type="radio" name="q2" value="A">
+<strong>A.</strong> La mer territoriale appartient à l'État côtier, mais le droit international prévoit notamment un droit de passage inoffensif pour les navires étrangers.
+</label>
+
+<label class="answer">
+<input type="radio" name="q2" value="B">
+<strong>B.</strong> Le navire doit nécessairement obtenir la nationalité de l'État côtier.
+</label>
+
+<label class="answer">
+<input type="radio" name="q2" value="C">
+<strong>C.</strong> La mer territoriale est soumise aux mêmes règles qu'une ZEE.
+</label>
+
+<label class="answer">
+<input type="radio" name="q2" value="D">
+<strong>D.</strong> L'État côtier ne possède aucun droit sur cet espace.
+</label>
+
+</div>
+
+<div class="question">
+
+<h3>Question 3</h3>
+
+<p><strong>
+Quelle est la particularité de la ZEE par rapport à la mer territoriale ?
+</strong></p>
+
+<label class="answer">
+<input type="radio" name="q3" value="A">
+<strong>A.</strong> L'État côtier y exerce une souveraineté territoriale identique à celle de son territoire terrestre.
+</label>
+
+<label class="answer">
+<input type="radio" name="q3" value="B">
+<strong>B.</strong> Elle est réservée exclusivement aux navires militaires.
+</label>
+
+<label class="answer">
+<input type="radio" name="q3" value="C">
+<strong>C.</strong> L'État côtier dispose de droits souverains sur les ressources naturelles et de compétences spécifiques, sans posséder une souveraineté territoriale complète sur toute la zone.
+</label>
+
+<label class="answer">
+<input type="radio" name="q3" value="D">
+<strong>D.</strong> Elle est toujours limitée à 12 milles marins.
+</label>
+
+</div>
+
+<div class="question">
+
+<h3>Question 4</h3>
+
+<p><strong>
+Pourquoi parle-t-on de territorialisation des espaces maritimes et aériens ?
+</strong></p>
+
+<label class="answer">
+<input type="radio" name="q4" value="A">
+<strong>A.</strong> Parce que les États cherchent à délimiter et à réglementer des espaces qui dépassent leur territoire terrestre.
+</label>
+
+<label class="answer">
+<input type="radio" name="q4" value="B">
+<strong>B.</strong> Parce que tous les espaces maritimes deviennent des territoires terrestres.
+</label>
+
+<label class="answer">
+<input type="radio" name="q4" value="C">
+<strong>C.</strong> Parce que les frontières terrestres disparaissent.
+</label>
+
+<label class="answer">
+<input type="radio" name="q4" value="D">
+<strong>D.</strong> Parce que les États ne contrôlent plus les ressources naturelles.
+</label>
+
+</div>
+
+
+<!-- ================================== -->
+<!-- QUESTION 5 : SCHÉMA À COMPLÉTER -->
+<!-- ================================== -->
+
+<div class="question">
+
+<h3>Question 5 – Je complète le schéma des espaces maritimes</h3>
+
+<p>
+<strong>
+Complétez le schéma en inscrivant vous-mêmes le nom des trois espaces
+maritimes et les deux distances qui délimitent ces espaces.
+</strong>
+</p>
+
+<p class="small">
+Écrivez toutes vos réponses en minuscules. Aucune proposition
+ne vous est fournie : vous devez retrouver les cinq notions
+à partir de vos connaissances.
+</p>
+
+<div class="maritime-diagram">
+
+<div class="diagram-title">
+LES ESPACES MARITIMES À PARTIR DU LITTORAL
+</div>
+
+<!-- DISTANCES À COMPLÉTER -->
+
+<div class="distance-row">
+
+    <div class="distance-cell">
+        Littoral
+    </div>
+
+    <div class="distance-cell">
+        <input
+            type="text"
+            id="d12"
+            placeholder="Distance..."
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+        >
+        <small>Première limite</small>
+    </div>
+
+    <div class="distance-cell">
+        <input
+            type="text"
+            id="d200"
+            placeholder="Distance..."
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+        >
+        <small>Seconde limite</small>
+    </div>
+
+    <div class="distance-cell">
+        Au-delà
+    </div>
+
+</div>
+
+<!-- ESPACES MARITIMES À COMPLÉTER -->
+
+<div class="maritime-grid">
+
+    <div class="diagram-zone land-zone">
+
+        <strong>TERRITOIRE TERRESTRE</strong>
+
+        <small>État côtier</small>
+
+    </div>
+
+    <div class="diagram-zone territorial-zone">
+
+        <strong>ZONE 1</strong>
+
+        <small>De la côte à la première limite</small>
+
+        <input
+            type="text"
+            id="dTerritorial"
+            class="zone-input"
+            placeholder="Nom de la zone..."
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+        >
+
+    </div>
+
+    <div class="diagram-zone zee-zone">
+
+        <strong>ZONE 2</strong>
+
+        <small>De la première à la seconde limite</small>
+
+        <input
+            type="text"
+            id="dZee"
+            class="zone-input"
+            placeholder="Nom de la zone..."
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+        >
+
+    </div>
+
+    <div class="diagram-zone high-seas-zone">
+
+        <strong>ZONE 3</strong>
+
+        <small>Au-delà de la seconde limite</small>
+
+        <input
+            type="text"
+            id="dHigh"
+            class="zone-input"
+            placeholder="Nom de la zone..."
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+        >
+
+    </div>
+
+</div>
+
+<p class="small" style="text-align:center;margin-top:12px;">
+Schéma simplifié et non à l'échelle. Les distances sont calculées
+à partir des lignes de base.
+</p>
+
+</div>
+
+<div id="diagramResult" class="diagram-feedback">
+Votre schéma sera corrigé lors de la validation du QCM.
+</div>
+
+</div>
+
+
+</div>
+
+<button type="button" onclick="correctQuiz()">
+Valider mes réponses
+</button>
+
+<div id="quizResult"></div>
+
+</section>
+
+<!-- ================================== -->
+<!-- ÉTAPE 2 : CORRECTIONS -->
+<!-- ================================== -->
+
+<section class="step" id="step2">
+
+<h2>Étape 2 – Je comprends mes erreurs</h2>
+
+<p>
+Découvrez les bonnes réponses et lisez attentivement les explications.
+L'objectif est de comprendre les différences entre les espaces maritimes
+et les formes de pouvoir exercées par les États.
+</p>
+
+<div class="correction">
+
+<h3>Question 1 – La Convention de Montego Bay de 1982</h3>
+
+<p><strong>Bonne réponse : B.</strong></p>
+
+<p>
+La Convention des Nations unies sur le droit de la mer, adoptée à Montego Bay
+en 1982, établit un cadre juridique international pour organiser
+l'utilisation des espaces maritimes.
+</p>
+
+<p>
+Elle distingue notamment les eaux intérieures, la mer territoriale,
+la zone économique exclusive (ZEE) et la haute mer.
+Ces espaces ne sont pas soumis aux mêmes règles.
+</p>
+
+<p>
+La Convention définit donc les droits des États côtiers, mais également
+les libertés dont disposent les autres États dans les espaces maritimes.
+</p>
+
+<p><strong>À retenir :</strong>
+la Convention de Montego Bay organise le droit de la mer et établit
+différents régimes juridiques selon les espaces maritimes.
+</p>
+
+</div>
+
+<div class="correction">
+
+<h3>Question 2 – Le passage inoffensif dans la mer territoriale</h3>
+
+<p><strong>Bonne réponse : A.</strong></p>
+
+<p>
+La mer territoriale s'étend jusqu'à 12 milles marins à partir des lignes
+de base de l'État côtier.
+</p>
+
+<p>
+L'État y exerce sa souveraineté, notamment sur les eaux, les fonds marins,
+le sous-sol et l'espace aérien surjacent.
+</p>
+
+<p>
+Cependant, cette souveraineté doit respecter le droit international.
+Les navires étrangers bénéficient notamment du droit de passage inoffensif,
+à condition que leur passage ne porte pas atteinte à la paix,
+au bon ordre ou à la sécurité de l'État côtier.
+</p>
+
+<p><strong>À retenir :</strong>
+la mer territoriale relève de la souveraineté de l'État côtier,
+mais cette souveraineté est encadrée par le droit international.
+</p>
+
+</div>
+
+<div class="correction">
+
+<h3>Question 3 – Les droits souverains dans la ZEE</h3>
+
+<p><strong>Bonne réponse : C.</strong></p>
+
+<p>
+La zone économique exclusive s'étend jusqu'à 200 milles marins
+des lignes de base, sous réserve des délimitations éventuelles
+avec les États voisins.
+</p>
+
+<p>
+Dans cette zone, l'État côtier possède des droits souverains
+pour explorer, exploiter, conserver et gérer les ressources naturelles,
+notamment les ressources halieutiques, énergétiques et minérales.
+</p>
+
+<p>
+Il dispose également de compétences spécifiques concernant certaines
+activités, notamment les installations artificielles, la recherche
+scientifique marine et la protection de l'environnement.
+</p>
+
+<p>
+En revanche, il ne possède pas une souveraineté territoriale complète
+sur toute cette zone. Les autres États conservent notamment
+des libertés de navigation et de survol.
+</p>
+
+<p><strong>À retenir :</strong>
+la ZEE donne à l'État côtier des droits souverains sur les ressources
+et certaines compétences, mais elle ne constitue pas une extension
+complète de son territoire national.
+</p>
+
+</div>
+
+<div class="correction">
+
+<h3>Question 4 – La territorialisation des espaces maritimes et aériens</h3>
+
+<p><strong>Bonne réponse : A.</strong></p>
+
+<p>
+La territorialisation désigne le processus par lequel les États
+affirment des droits et mettent en place des règles sur des espaces
+qui dépassent leur territoire terrestre.
+</p>
+
+<p>
+En mer, cette territorialisation se manifeste notamment par la définition
+de la mer territoriale et de la ZEE.
+</p>
+
+<p>
+Dans les espaces aériens, un État exerce une souveraineté complète
+et exclusive sur l'espace aérien situé au-dessus de son territoire
+terrestre et de sa mer territoriale.
+</p>
+
+<p>
+Cette souveraineté aérienne ne s'étend pas automatiquement à l'ensemble
+de la ZEE : au-dessus de celle-ci, les libertés de survol demeurent.
+</p>
+
+<p><strong>À retenir :</strong>
+les États cherchent à délimiter et à réglementer différents espaces,
+mais les formes de contrôle et les droits exercés varient selon leur nature.
+</p>
+
+</div>
+
+
+<div class="correction">
+
+<h3>Question 5 – Les espaces maritimes</h3>
+
+<p><strong>Correction du schéma :</strong></p>
+
+<div class="maritime-diagram">
+
+<div class="diagram-title">
+SCHÉMA CORRIGÉ DES ESPACES MARITIMES
+</div>
+
+<!-- DISTANCES CORRIGÉES -->
+
+<div class="distance-row">
+
+    <div class="distance-cell">
+        Littoral
+    </div>
+
+    <div class="distance-cell">
+        12 milles marins
+        <small>Première limite</small>
+    </div>
+
+    <div class="distance-cell">
+        200 milles marins
+        <small>Seconde limite</small>
+    </div>
+
+    <div class="distance-cell">
+        Au-delà
+    </div>
+
+</div>
+
+<!-- ZONES CORRIGÉES -->
+
+<div class="maritime-grid diagram-correction-grid">
+
+    <div class="diagram-zone land-zone">
+
+        <strong>TERRITOIRE TERRESTRE</strong>
+
+        <small>État côtier</small>
+
+    </div>
+
+    <div class="diagram-zone territorial-zone">
+
+        <strong>EAUX TERRITORIALES</strong>
+
+        <small>De 0 à 12 milles marins</small>
+
+        <small><strong>SOUVERAINETÉ TERRITORIALE</strong></small>
+
+    </div>
+
+    <div class="diagram-zone zee-zone">
+
+        <strong>ZEE</strong>
+
+        <small>Jusqu'à 200 milles marins</small>
+
+        <small><strong>DROITS SOUVERAINS</strong></small>
+
+    </div>
+
+    <div class="diagram-zone high-seas-zone">
+
+        <strong>HAUTE MER</strong>
+
+        <small>Au-delà des limites de la ZEE</small>
+
+        <small><strong>LIBERTÉS INTERNATIONALES</strong></small>
+
+    </div>
+
+</div>
+
+</div>
+
+<h3>Comprendre les formes de souveraineté de l'État riverain</h3>
+
+<div class="sovereignty-box sovereignty-full">
+
+<strong>1. Les eaux territoriales : une souveraineté territoriale</strong>
+
+<p>
+L'État côtier exerce sa souveraineté sur les eaux, les fonds marins,
+le sous-sol et l'espace aérien surjacent.
+</p>
+
+<p>
+Cette souveraineté est encadrée par le droit international.
+Les navires étrangers bénéficient notamment du droit de passage inoffensif.
+</p>
+
+</div>
+
+<div class="sovereignty-box sovereignty-limited">
+
+<strong>2. La ZEE : des droits souverains et des compétences spécifiques</strong>
+
+<p>
+L'État côtier dispose de droits souverains pour explorer, exploiter,
+conserver et gérer les ressources naturelles.
+</p>
+
+<p>
+Il possède également des compétences spécifiques concernant
+les installations artificielles, la recherche scientifique marine
+et la protection de l'environnement.
+</p>
+
+<p>
+Il ne possède pas une souveraineté territoriale complète.
+Les autres États conservent notamment leurs libertés de navigation
+et de survol.
+</p>
+
+</div>
+
+<div class="sovereignty-box sovereignty-none">
+
+<strong>3. La haute mer : aucune souveraineté étatique</strong>
+
+<p>
+Aucun État ne peut s'approprier la haute mer ni y exercer
+une souveraineté territoriale.
+</p>
+
+<p>
+Les États disposent cependant de libertés reconnues par le droit
+international, notamment la navigation, le survol et certaines
+activités de recherche scientifique.
+</p>
+
+</div>
+
+<div class="result">
+
+<strong>La distinction fondamentale à mémoriser :</strong>
+
+<p>
+Eaux territoriales = souveraineté territoriale.
+</p>
+
+<p>
+ZEE = droits souverains sur les ressources et compétences spécifiques.
+</p>
+
+<p>
+Haute mer = libertés internationales, sans souveraineté étatique.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="result">
+
+<h3>Mon bilan</h3>
+
+<p>
+Vous devez maintenant être capable de distinguer les différents espaces
+maritimes, leurs limites et les droits que les États peuvent y exercer.
+</p>
+
+<p>
+La distinction entre souveraineté territoriale et droits souverains
+est particulièrement importante.
+</p>
+
+</div>
+
+<button onclick="showStep(1)">
+Revenir à mes réponses
+</button>
+
+<button onclick="showStep(3)">
+Passer à l'étape 3
+</button>
+
+</section>
+
+<!-- ================================== -->
+<!-- ÉTAPE 3 : ARGUMENTATION -->
+<!-- ================================== -->
+
+<section class="step" id="step3">
+
+<h2>Étape 3 – Je réutilise mes connaissances</h2>
+
+<p>
+Connaître les espaces maritimes ne suffit pas :
+vous devez également être capable de mobiliser vos connaissances
+pour construire une réponse géographique argumentée.
+</p>
+
+<div class="question">
+
+<h3>À vous de rédiger !</h3>
+
+<p>
+<strong>Sujet :</strong> Montrez que les espaces maritimes sont soumis
+à des formes de territorialisation qui varient selon les droits
+exercés par les États.
+</p>
+
+<p>
+Rédigez un court paragraphe argumenté d'environ 8 à 12 lignes.
+Vous devez utiliser au moins deux notions précises étudiées dans cette fiche.
+</p>
+
+<textarea
+id="studentAnswer"
+rows="9"
+placeholder="Rédigez votre réponse ici..."
+></textarea>
+
+<p class="small">
+Conseil : essayez de construire votre réponse sans consulter
+les exemples de corrigés.
+</p>
+
+</div>
+
+<h3>Un guide pour construire votre réponse</h3>
+
+<p>
+Une réponse argumentée efficace comporte trois éléments complémentaires :
+</p>
+
+<div class="guide">
+
+<div style="background:#e7f1fa;">
+<strong style="color:#2471A3;">1. L'affirmation</strong>
+<p>
+Vous présentez clairement l'idée que vous souhaitez démontrer.
+</p>
+</div>
+
+<div style="background:#e8f5ec;">
+<strong style="color:#26945B;">2. L'exemple</strong>
+<p>
+Vous mobilisez un exemple géographique ou juridique précis.
+</p>
+</div>
+
+<div style="background:#fff1df;">
+<strong style="color:#C47B19;">3. L'explication</strong>
+<p>
+Vous expliquez en quoi cet exemple permet de confirmer votre affirmation.
+</p>
+</div>
+
+</div>
+
+<p>
+Votre réponse doit notamment montrer que les droits exercés
+par les États ne sont pas identiques dans la mer territoriale,
+la ZEE et la haute mer.
+</p>
+
+<button onclick="showStep(4)">
+Consulter les exemples de corrigés
+</button>
+
+</section>
+
+<!-- ================================== -->
+<!-- ÉTAPE 4 : EXEMPLES DE CORRIGÉS -->
+<!-- ================================== -->
+
+<section class="step" id="step4">
+
+<h2>Étape 4 – Je compare ma réponse aux exemples corrigés</h2>
+
+<p>
+Comparez maintenant votre paragraphe aux trois propositions suivantes.
+Les couleurs permettent d'identifier les différentes étapes du raisonnement.
+</p>
+
+<div style="background:#f3f5f8;padding:15px;border-radius:9px;margin:15px 0;">
+
+<strong>Légende du code couleur :</strong>
+
+<p style="color:#2471A3;font-weight:bold;">
+■ Affirmation : l'idée défendue
+</p>
+
+<p style="color:#26945B;font-weight:bold;">
+■ Exemple géographique ou juridique : le fait précis mobilisé
+</p>
+
+<p style="color:#C47B19;font-weight:bold;">
+■ Explication : le raisonnement qui relie l'exemple à l'affirmation
+</p>
+
+</div>
+
+<div class="correction">
+
+<h3>Exemple 1 – La mer territoriale relève de la souveraineté de l'État</h3>
+
+<p>
+<span style="color:#2471A3;font-weight:bold;">
+Les États exercent une souveraineté territoriale sur certains espaces
+maritimes situés au large de leurs côtes.
+</span>
+
+<span style="color:#26945B;font-weight:bold;">
+La Convention de Montego Bay prévoit notamment une mer territoriale
+pouvant s'étendre jusqu'à 12 milles marins à partir des lignes de base.
+</span>
+
+<span style="color:#C47B19;font-weight:bold;">
+Dans cet espace, l'État côtier exerce sa souveraineté sur les eaux,
+les fonds marins, le sous-sol et l'espace aérien surjacent.
+Cependant, cette souveraineté est encadrée par le droit international,
+notamment par le droit de passage inoffensif des navires étrangers.
+</span>
+</p>
+
+</div>
+
+<div class="correction">
+
+<h3>Exemple 2 – La ZEE permet aux États de contrôler les ressources</h3>
+
+<p>
+<span style="color:#2471A3;font-weight:bold;">
+Les États peuvent également exercer des droits spécifiques sur des espaces
+maritimes qui ne constituent pas une extension complète de leur territoire.
+</span>
+
+<span style="color:#26945B;font-weight:bold;">
+La zone économique exclusive peut s'étendre jusqu'à 200 milles marins
+des lignes de base. L'État côtier y dispose de droits souverains
+sur les ressources naturelles.
+</span>
+
+<span style="color:#C47B19;font-weight:bold;">
+Il peut ainsi exploiter les ressources halieutiques, énergétiques
+et minérales, tout en réglementant certaines activités.
+Toutefois, les autres États conservent notamment leur liberté
+de navigation et de survol. La ZEE illustre donc une forme
+de territorialisation qui ne correspond pas à une souveraineté complète.
+</span>
+</p>
+
+</div>
+
+<div class="correction">
+
+<h3>Exemple 3 – La haute mer échappe à la souveraineté des États</h3>
+
+<p>
+<span style="color:#2471A3;font-weight:bold;">
+La territorialisation des espaces maritimes possède cependant des limites :
+certains espaces restent soumis à des libertés internationales.
+</span>
+
+<span style="color:#26945B;font-weight:bold;">
+C'est notamment le cas de la haute mer, sur laquelle aucun État
+ne peut exercer de souveraineté territoriale.
+</span>
+
+<span style="color:#C47B19;font-weight:bold;">
+Les navires et les aéronefs des différents États peuvent notamment
+bénéficier de libertés de navigation et de survol dans les conditions
+prévues par le droit international. La haute mer constitue ainsi
+un espace international qui ne peut être approprié par un État.
+</span>
+</p>
+
+</div>
+
+<div class="result">
+
+<h3>Vérifiez votre propre réponse</h3>
+
+<p>Avant de poursuivre, demandez-vous :</p>
+
+<ul>
+<li>Ai-je formulé une affirmation qui répond directement au sujet ?</li>
+<li>Ai-je utilisé des notions précises : mer territoriale, ZEE, haute mer ?</li>
+<li>Ai-je distingué souveraineté territoriale et droits souverains ?</li>
+<li>Ai-je expliqué le rôle de la Convention de Montego Bay ?</li>
+<li>Ai-je utilisé le vocabulaire géographique approprié ?</li>
+</ul>
+
+<p>
+Votre réponse n'a pas besoin d'être identique aux modèles :
+elle doit en revanche comporter les mêmes éléments de raisonnement.
+</p>
+
+</div>
+
+<button onclick="showStep(2)">
+Revoir les corrections du QCM
+</button>
+
+<button onclick="showStep(5)">
+Passer à l'étape 5
+</button>
+
+</section>
+
+<!-- ================================== -->
+<!-- ÉTAPE 5 : CONSOLIDATION -->
+<!-- ================================== -->
+
+<section class="step" id="step5">
+
+<h2>Étape 5 – Je consolide mes acquis</h2>
+
+<p>
+Vous avez terminé les cinq questions et l'exercice d'argumentation.
+Il est maintenant temps de vérifier ce que vous avez réellement retenu.
+</p>
+
+<div class="result">
+
+<h3>Pourquoi reprendre les questions quelques jours plus tard ?</h3>
+
+<p>
+Pour mémoriser durablement les notions, il est utile de revenir
+sur les questions auxquelles vous avez mal répondu, mais pas immédiatement.
+</p>
+
+<p>
+Je vous conseille d'attendre quelques jours avant de reprendre cet exercice.
+Ce délai vous permettra de vérifier si vous êtes capable de retrouver
+les connaissances sans relire systématiquement le corrigé.
+</p>
+
+</div>
+
+<h3>Je reprends les questions qui m'ont posé problème</h3>
+
+<p>
+Les questions auxquelles vous avez mal répondu lors du premier essai
+sont conservées ci-dessous.
+</p>
+
+<div id="failedQuestions"></div>
+
+<div id="retryResult"></div>
+
+<button onclick="retryFailedQuestions()">
+Vérifier mes nouvelles réponses
+</button>
+
+<!-- SCHÉMA DE SYNTHÈSE -->
+
+<h2>Le schéma de synthèse : les espaces maritimes et aériens</h2>
+
+<p>
+Retenez que les États ne possèdent pas les mêmes droits dans tous
+les espaces maritimes. La territorialisation est progressive et
+s'accompagne de régimes juridiques différents.
+</p>
+
+<div style="background:#f5f7fa;border:1px solid #dce4ed;border-radius:12px;padding:18px;margin:20px 0;">
+
+<div style="background:#24476b;color:white;text-align:center;padding:16px;border-radius:9px;">
+
+<strong style="font-size:19px;">LES ESPACES MARITIMES</strong>
+
+<p style="margin:5px 0 0;">
+Une organisation juridique définie par le droit international
+</p>
+
+</div>
+
+<div style="text-align:center;font-size:25px;color:#52789c;padding:5px;">
+↓
+</div>
+
+<div style="background:#e4eef8;padding:15px;border-radius:9px;border-left:5px solid #2471A3;">
+
+<strong style="color:#2471A3;">1. LA MER TERRITORIALE</strong>
+
+<p>Jusqu'à 12 milles marins des lignes de base.</p>
+
+<ul>
+<li>Souveraineté de l'État côtier.</li>
+<li>Contrôle des eaux, du fond marin et du sous-sol.</li>
+<li>Souveraineté sur l'espace aérien surjacent.</li>
+<li>Respect du passage inoffensif des navires étrangers.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;font-size:25px;color:#52789c;padding:5px;">
+↓
+</div>
+
+<div style="background:#e8f5ec;padding:15px;border-radius:9px;border-left:5px solid #26945B;">
+
+<strong style="color:#26945B;">2. LA ZONE ÉCONOMIQUE EXCLUSIVE (ZEE)</strong>
+
+<p>Jusqu'à 200 milles marins des lignes de base.</p>
+
+<ul>
+<li>Droits souverains sur les ressources naturelles.</li>
+<li>Gestion des ressources halieutiques et énergétiques.</li>
+<li>Compétences spécifiques en matière d'installations et de protection environnementale.</li>
+<li>Maintien des libertés de navigation et de survol des autres États.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;font-size:25px;color:#52789c;padding:5px;">
+↓
+</div>
+
+<div style="background:#fff1df;padding:15px;border-radius:9px;border-left:5px solid #C47B19;">
+
+<strong style="color:#C47B19;">3. LA HAUTE MER</strong>
+
+<p>Au-delà des limites de la ZEE.</p>
+
+<ul>
+<li>Aucune souveraineté territoriale d'un État.</li>
+<li>Liberté de navigation.</li>
+<li>Liberté de survol.</li>
+<li>Liberté de recherche scientifique, dans les conditions du droit international.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;font-size:25px;color:#52789c;padding:5px;">
+↓
+</div>
+
+<div style="background:#f0eafa;padding:15px;border-radius:9px;border-left:5px solid #7952a3;">
+
+<strong style="color:#7952a3;">4. LES ESPACES AÉRIENS</strong>
+
+<p>Une souveraineté aérienne distincte du régime de la ZEE.</p>
+
+<ul>
+<li>L'État exerce une souveraineté complète et exclusive sur l'espace aérien au-dessus de son territoire et de sa mer territoriale.</li>
+<li>Au-dessus de la ZEE, l'État côtier ne possède pas de souveraineté aérienne.</li>
+<li>Les autres États conservent la liberté de survol dans les espaces internationaux.</li>
+</ul>
+
+</div>
+
+</div>
+
+<h3>Les notions essentielles à connaître</h3>
+
+<div class="correction">
+
+<p><strong>La Convention de Montego Bay (1982) :</strong></p>
+
+<p>
+Elle établit un cadre juridique international pour organiser
+les espaces maritimes et définir les droits des États.
+</p>
+
+<p><strong>La mer territoriale :</strong></p>
+
+<p>
+Elle correspond à un espace sur lequel l'État côtier exerce
+sa souveraineté, sous réserve des règles du droit international.
+</p>
+
+<p><strong>La ZEE :</strong></p>
+
+<p>
+Elle permet à l'État côtier de disposer de droits souverains
+sur les ressources naturelles et de compétences spécifiques.
+</p>
+
+<p><strong>La haute mer :</strong></p>
+
+<p>
+Elle constitue un espace international qui ne peut être placé
+sous la souveraineté territoriale d'un État.
+</p>
+
+<p><strong>La territorialisation :</strong></p>
+
+<p>
+Elle correspond à l'affirmation de droits et de règles par les États
+sur des espaces maritimes et aériens.
+</p>
+
+</div>
+
+<h2>Mon bilan final</h2>
+
+<p>
+Avant de quitter cette fiche, vérifiez que vous êtes capable de :
+</p>
+
+<ul>
+<li>Expliquer le rôle de la Convention de Montego Bay.</li>
+<li>Connaître la limite de la mer territoriale : 12 milles marins.</li>
+<li>Connaître la limite maximale de la ZEE : 200 milles marins.</li>
+<li>Distinguer souveraineté territoriale et droits souverains.</li>
+<li>Expliquer pourquoi la haute mer n'appartient à aucun État.</li>
+<li>Distinguer les espaces aériens nationaux des espaces internationaux.</li>
+<li>Construire une réponse argumentée sur la territorialisation des espaces.</li>
+</ul>
+
+<div class="result">
+
+<h3>Bravo pour votre travail !</h3>
+
+<p>
+Vous disposez maintenant des connaissances essentielles pour comprendre
+l'organisation juridique des espaces maritimes et aériens.
+</p>
+
+<p>
+N'oubliez pas : les États ne disposent pas partout des mêmes pouvoirs.
+La mer territoriale, la ZEE et la haute mer correspondent à trois régimes
+juridiques différents.
+</p>
+
+</div>
+
+<button onclick="showStep(3)">
+Retour à l'argumentation
+</button>
+
+<button onclick="restartQuiz()">
+Recommencer le QCM
+</button>
+
+</section>
+
+<!-- ================================== -->
+<!-- NAVIGATION INFÉRIEURE -->
+<!-- ================================== -->
+
+<div class="navigation">
+
+    <button id="bottomPrevious" onclick="previousStep()">
+        ← Précédent
+    </button>
+
+    <span class="step-indicator" id="bottomIndicator">
+        Étape 1 / 5
+    </span>
+
+    <button id="bottomNext" onclick="nextStep()">
+        Suivant →
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+// =====================================
+// 1. VARIABLES GÉNÉRALES
+// =====================================
+
+let currentStep = 1;
+const totalSteps = 5;
+
+let quizValidated = false;
+let failedQuestions = [];
+let retryDiagramMode = false;
+
+const correctAnswers = {
+    q1: "B",
+    q2: "A",
+    q3: "C",
+    q4: "A"
+};
+
+const correctDiagram = {
+    dTerritorial: [
+        "mer territoriale",
+        "mers territoriales",
+        "eaux territoriales",
+        "eau territoriale",
+        "Eaux territoriales",
+        "Eau territoriale",
+        "Mer territoriale",
+        "Mers territoriales"
+    ],
+
+    dZee: [
+        "zee",
+        "ZEE",
+        "z e e",
+        "zone economique exclusive",
+        "zone economique exclusive (zee)";
+        "Zone économique exclusive",
+        "zone économique exclusive"
+    ],
+
+    dHigh: [
+        "haute mer",
+        "eaux internationales"
+    ],
+
+    d12: [
+        "12 milles",
+        "12 mille",
+        "12 milles marins",
+        "12 miles",
+        "12 miles nautiques",
+        "12 milles nautiques",
+        "12 nm"
+    ],
+
+    d200: [
+        "200 milles",
+        "200 mille",
+        "200 milles marins",
+        "200 miles",
+        "200 miles nautiques",
+        "200 milles nautiques",
+        "200 nm"
+    ]
+};
+
+function normalizeAnswer(value) {
+    return value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, " ");
+}
+
+const questionData = {
+
+    q1: {
+        title: "Quel est le principal effet de la Convention de Montego Bay de 1982 ?",
+        options: {
+            A: "Elle transforme toutes les mers en territoires nationaux.",
+            B: "Elle organise le droit de la mer et définit des espaces maritimes auxquels sont associés des droits différents.",
+            C: "Elle supprime les ZEE pour garantir la libre exploitation des ressources.",
+            D: "Elle fixe les frontières aériennes des États."
+        }
+    },
+
+    q2: {
+        title: "Un navire étranger traverse la mer territoriale en respectant le passage inoffensif. Quelle proposition est correcte ?",
+        options: {
+            A: "La mer territoriale appartient à l'État côtier, mais le droit international prévoit notamment un droit de passage inoffensif.",
+            B: "Le navire doit nécessairement obtenir la nationalité de l'État côtier.",
+            C: "La mer territoriale est soumise aux mêmes règles qu'une ZEE.",
+            D: "L'État côtier ne possède aucun droit sur cet espace."
+        }
+    },
+
+    q3: {
+        title: "Quelle est la particularité de la ZEE par rapport à la mer territoriale ?",
+        options: {
+            A: "L'État côtier y exerce une souveraineté territoriale complète.",
+            B: "Elle est réservée exclusivement aux navires militaires.",
+            C: "L'État côtier dispose de droits souverains sur les ressources naturelles et de compétences spécifiques.",
+            D: "Elle est toujours limitée à 12 milles marins."
+        }
+    },
+
+    q4: {
+        title: "Pourquoi parle-t-on de territorialisation des espaces maritimes et aériens ?",
+        options: {
+            A: "Parce que les États cherchent à délimiter et à réglementer des espaces qui dépassent leur territoire terrestre.",
+            B: "Parce que tous les espaces maritimes deviennent des territoires terrestres.",
+            C: "Parce que les frontières terrestres disparaissent.",
+            D: "Parce que les États ne contrôlent plus les ressources naturelles."
+        }
+    }
+
+};
+
+
+// =====================================
+// 2. AFFICHAGE DES ÉTAPES
+// =====================================
+
+function showStep(step) {
+
+    if (step < 1 || step > totalSteps) {
+        return;
+    }
+
+    if (step > 1 && !quizValidated) {
+
+        alert("Veuillez d'abord valider vos réponses au QCM.");
+
+        return;
+
+    }
+
+    document.querySelectorAll(".step").forEach(function(section) {
+
+        section.classList.remove("active");
+
+    });
+
+    const target = document.getElementById("step" + step);
+
+    if (!target) {
+
+        alert("Une erreur empêche l'affichage de cette étape. Vérifiez que la section step" + step + " est bien présente dans votre fichier.");
+
+        return;
+
+    }
+
+    target.classList.add("active");
+
+    currentStep = step;
+
+    updateNavigation();
+
+    if (step === 5) {
+
+        displayFailedQuestions();
+
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+// =====================================
+// 3. MISE À JOUR DE LA NAVIGATION
+// =====================================
+
+function updateNavigation() {
+
+    const previousButtons = [
+        document.getElementById("topPrevious"),
+        document.getElementById("bottomPrevious")
+    ];
+
+    const nextButtons = [
+        document.getElementById("topNext"),
+        document.getElementById("bottomNext")
+    ];
+
+    const indicators = [
+        document.getElementById("topIndicator"),
+        document.getElementById("bottomIndicator")
+    ];
+
+    previousButtons.forEach(function(button) {
+
+        if (button) {
+            button.disabled = (currentStep === 1);
+        }
+
+    });
+
+    nextButtons.forEach(function(button) {
+
+        if (button) {
+
+            button.disabled =
+                (currentStep === totalSteps) ||
+                (currentStep === 1 && !quizValidated);
+
+        }
+
+    });
+
+    indicators.forEach(function(indicator) {
+
+        if (indicator) {
+
+            indicator.textContent =
+                "Étape " + currentStep + " / " + totalSteps;
+
+        }
+
+    });
+
+}
+
+
+// =====================================
+// 4. NAVIGATION AVANT / ARRIÈRE
+// =====================================
+
+function nextStep() {
+
+    if (currentStep < totalSteps) {
+
+        showStep(currentStep + 1);
+
+    }
+
+}
+
+function previousStep() {
+
+    if (currentStep > 1) {
+
+        showStep(currentStep - 1);
+
+    }
+
+}
+
+
+// =====================================
+// 5. NORMALISATION DES RÉPONSES ÉCRITES
+// =====================================
+
+function normalizeAnswer(value) {
+
+    return value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+
+}
+
+
+// =====================================
+// 6. VÉRIFICATION DU SCHÉMA
+// =====================================
+
+function checkDiagram() {
+
+    let score = 0;
+    let unanswered = 0;
+    let mistakes = [];
+
+    for (let id in correctDiagram) {
+
+        const field = document.getElementById(id);
+
+        if (!field) {
+            unanswered++;
+            mistakes.push(id);
+            continue;
+        }
+
+        const answer = normalizeAnswer(field.value);
+
+        if (answer === "") {
+            unanswered++;
+            mistakes.push(id);
+            continue;
+        }
+
+        const acceptedAnswers = correctDiagram[id].map(
+            normalizeAnswer
+        );
+
+        if (acceptedAnswers.includes(answer)) {
+            score++;
+        } else {
+            mistakes.push(id);
+        }
+    }
+
+    return {
+        score: score,
+        unanswered: unanswered,
+        mistakes: mistakes
+    };
+}
+
+// =====================================
+// 7. VALIDATION DU QCM
+// =====================================
+
+function correctQuiz() {
+
+    if (quizValidated) {
+
+        showStep(2);
+
+        return;
+
+    }
+
+    let score = 0;
+
+    failedQuestions = [];
+
+    // Vérification des quatre premières questions
+
+    for (let question in correctAnswers) {
+
+        const selected = document.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+        if (!selected) {
+
+            alert("Veuillez répondre aux quatre premières questions.");
+
+            return;
+
+        }
+
+        if (selected.value === correctAnswers[question]) {
+
+            score++;
+
+        } else {
+
+            failedQuestions.push(question);
+
+        }
+
+    }
+
+    // Vérification de la question 5
+
+    const diagram = checkDiagram();
+
+    if (diagram.unanswered > 0) {
+
+        alert(
+            "Veuillez compléter les cinq cases du schéma avant de valider."
+        );
+
+        return;
+
+    }
+
+    score += diagram.score;
+
+    if (diagram.score < 5) {
+
+        failedQuestions.push("q5");
+
+    }
+
+    // Validation
+
+    quizValidated = true;
+
+    // Résultat du schéma
+
+    const diagramResult =
+        document.getElementById("diagramResult");
+
+    if (diagram.score === 5) {
+
+        diagramResult.innerHTML =
+            '<div class="result">' +
+            '<strong>Excellent !</strong>' +
+            '<p>Les cinq réponses du schéma sont correctes.</p>' +
+            '</div>';
+
+    } else {
+
+        diagramResult.innerHTML =
+            '<div class="correction">' +
+            '<strong>Votre résultat : ' + diagram.score + ' / 5</strong>' +
+            '<p>Consultez le schéma corrigé à l’étape 2 pour comprendre vos erreurs.</p>' +
+            '</div>';
+
+    }
+
+    // Résultat global
+
+    document.getElementById("quizResult").innerHTML =
+
+        '<div class="result">' +
+        '<h3>Votre résultat : ' + score + ' / 9</h3>' +
+        '<p>Questions 1 à 4 : 4 points maximum.</p>' +
+        '<p>Schéma de la question 5 : 5 points maximum.</p>' +
+        '<p>Vous pouvez maintenant consulter les corrections.</p>' +
+        '</div>';
+
+    updateNavigation();
+
+    showStep(2);
+
+}
+
+
+// =====================================
+// 8. AFFICHAGE DES QUESTIONS RATÉES
+// =====================================
+
+function displayFailedQuestions() {
+
+    const container =
+        document.getElementById("failedQuestions");
+
+    if (!container) {
+        return;
+    }
+
+    if (failedQuestions.length === 0) {
+
+        container.innerHTML =
+            '<div class="result">' +
+            '<strong>Bravo !</strong> Toutes vos réponses étaient correctes au premier essai.' +
+            '</div>';
+
+        return;
+
+    }
+
+    let html = "";
+
+    failedQuestions.forEach(function(question) {
+
+        if (question === "q5") {
+
+            html +=
+                '<div class="question">' +
+                '<h3>Question 5 – Schéma des espaces maritimes</h3>' +
+                '<p>Une ou plusieurs réponses écrites dans le schéma sont incorrectes.</p>' +
+                '<p><strong>Notions à revoir :</strong> eaux territoriales, ZEE, haute mer, 12 milles marins et 200 milles marins.</p>' +
+                '<p class="small">Consultez la correction à l’étape 2.</p>' +
+                '</div>';
+
+            return;
+
+        }
+
+        html +=
+            '<div class="question">' +
+            '<h3>Question ' + question.replace("q", "") + '</h3>' +
+            '<p>' + questionData[question].title + '</p>' +
+            '<p><strong>Bonne réponse : ' +
+            correctAnswers[question] + '</strong></p>' +
+            '<p>' +
+            questionData[question].options[correctAnswers[question]] +
+            '</p>' +
+            '</div>';
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+
+// =====================================
+// 9. NOUVEL ESSAI SUR LES QUESTIONS RATÉES
+// =====================================
+
+function retryFailedQuestions() {
+
+    const result =
+        document.getElementById("retryResult");
+
+    const container =
+        document.getElementById("failedQuestions");
+
+    if (failedQuestions.length === 0) {
+
+        result.innerHTML =
+            '<div class="result">Félicitations ! Aucune erreur à reprendre.</div>';
+
+        return;
+
+    }
+
+    // CAS PARTICULIER : REPRISE DU SCHÉMA
+
+    if (failedQuestions.includes("q5")) {
+
+        if (!retryDiagramMode) {
+
+            retryDiagramMode = true;
+
+            result.innerHTML =
+                '<div class="correction">' +
+                '<strong>Reprenez le schéma de la question 5.</strong>' +
+                '<p>Vous pouvez maintenant corriger vos cinq réponses à l’étape 1.</p>' +
+                '<button onclick="showStep(1)">Retourner au schéma</button>' +
+                '</div>';
+
+            return;
+
+        }
+
+        const diagram = checkDiagram();
+
+        if (diagram.unanswered > 0) {
+
+            alert("Veuillez compléter les cinq cases du schéma.");
+
+            return;
+
+        }
+
+        if (diagram.score === 5) {
+
+            failedQuestions =
+                failedQuestions.filter(function(question) {
+                    return question !== "q5";
+                });
+
+            result.innerHTML =
+                '<div class="result">' +
+                '<strong>Excellent !</strong>' +
+                '<p>Les cinq réponses du schéma sont maintenant correctes.</p>' +
+                '</div>';
+
+        } else {
+
+            result.innerHTML =
+                '<div class="correction">' +
+                '<strong>Votre nouveau résultat : ' + diagram.score + ' / 5</strong>' +
+                '<p>Il reste des erreurs. Relisez la correction à l’étape 2.</p>' +
+                '</div>';
+
+        }
+
+        retryDiagramMode = false;
+
+        displayFailedQuestions();
+
+        return;
+
+    }
+
+    // CAS DES QUESTIONS CLASSIQUES
+
+    if (!document.getElementById("retryForm")) {
+
+        let html = '<form id="retryForm">';
+
+        failedQuestions.forEach(function(question) {
+
+            html +=
+                '<div class="question">' +
+                '<h3>Question ' + question.replace("q", "") + '</h3>' +
+                '<p><strong>' + questionData[question].title + '</strong></p>';
+
+            for (let letter in questionData[question].options) {
+
+                html +=
+                    '<label class="answer">' +
+                    '<input type="radio" name="retry_' + question +
+                    '" value="' + letter + '">' +
+                    '<strong>' + letter + '.</strong> ' +
+                    questionData[question].options[letter] +
+                    '</label>';
+
+            }
+
+            html += '</div>';
+
+        });
+
+        html += '</form>';
+
+        container.innerHTML = html;
+
+        result.innerHTML =
+            '<p>Répondez à nouveau aux questions ci-dessus.</p>';
+
+        return;
+
+    }
+
+    let newFailures = [];
+    let score = 0;
+
+    const previousCount = failedQuestions.length;
+
+    for (let question of failedQuestions) {
+
+        const selected = document.querySelector(
+            'input[name="retry_' + question + '"]:checked'
+        );
+
+        if (!selected) {
+
+            alert("Veuillez répondre à toutes les questions.");
+
+            return;
+
+        }
+
+        if (selected.value === correctAnswers[question]) {
+
+            score++;
+
+        } else {
+
+            newFailures.push(question);
+
+        }
+
+    }
+
+    failedQuestions = newFailures;
+
+    result.innerHTML =
+        '<div class="result">' +
+        '<h3>Résultat du nouvel essai : ' +
+        score + ' / ' + previousCount + '</h3>' +
+        (newFailures.length === 0
+            ? '<p>Excellent ! Toutes les réponses sont maintenant correctes.</p>'
+            : '<p>Il reste ' + newFailures.length +
+              ' question(s) à retravailler.</p>') +
+        '</div>';
+
+    if (newFailures.length === 0) {
+
+        container.innerHTML = "";
+
+    } else {
+
+        displayFailedQuestions();
+
+    }
+
+}
+
+
+// =====================================
+// 10. RECOMMENCER LE QCM
+// =====================================
+
+function restartQuiz() {
+
+    const confirmation = confirm(
+        "Voulez-vous vraiment recommencer la fiche depuis le début ? Votre score et vos réponses seront effacés."
+    );
+
+    if (!confirmation) {
+        return;
+    }
+
+    // Réinitialiser les questions à choix multiples
+
+    document.querySelectorAll(
+        '#step1 input[type="radio"]'
+    ).forEach(function(input) {
+
+        input.checked = false;
+
+    });
+
+    // Réinitialiser le schéma
+
+    for (let id in correctDiagram) {
+
+        const field = document.getElementById(id);
+
+        if (field) {
+            field.value = "";
+        }
+
+    }
+
+    // Réinitialiser la rédaction
+
+    document.getElementById("studentAnswer").value = "";
+
+    // Effacer les résultats
+
+    document.getElementById("quizResult").innerHTML = "";
+
+    document.getElementById("diagramResult").innerHTML =
+        "Votre schéma sera corrigé lors de la validation du QCM.";
+
+    document.getElementById("retryResult").innerHTML = "";
+
+    document.getElementById("failedQuestions").innerHTML = "";
+
+    // Réinitialiser les variables
+
+    quizValidated = false;
+
+    failedQuestions = [];
+
+    retryDiagramMode = false;
+
+    // Supprimer l'ancien formulaire de reprise
+
+    const oldForm = document.getElementById("retryForm");
+
+    if (oldForm) {
+        oldForm.remove();
+    }
+
+    // Retour à la première étape
+
+    showStep(1);
+
+}
+
+
+// =====================================
+// 11. INITIALISATION
+// =====================================
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    currentStep = 1;
+
+    updateNavigation();
+
+});
+
+</script>
+
+
+</body>
+</html>
